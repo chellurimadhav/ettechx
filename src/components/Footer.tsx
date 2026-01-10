@@ -14,10 +14,27 @@ const Footer = () => {
   const quickLinks = [
     { name: "About Us", href: "#about" },
     { name: "Conference", href: "#conference" },
-    { name: "Exhibition", href: "#exhibit" },
-    { name: "Speakers", href: "#speakers" },
-    { name: "Awards", href: "#awards" },
-    { name: "Blog", href: "#" },
+    { name: "Why Visit", href: "#why-visit" },
+    { name: "Why Exhibit", href: "#why-exhibit" },
+    { name: "Blog", href: "#blog" },
+    { name: "Glimpse", href: "#glimpse" },
+  ];
+
+  const exhibitorLinks = [
+    { name: "Exhibitor Registration", href: "#" },
+    { name: "Exhibitor Profile", href: "#" },
+    { name: "Why Exhibit?", href: "#why-exhibit" },
+    { name: "Sponsorship", href: "#" },
+    { name: "Stand Info", href: "#" },
+  ];
+
+  const usefulLinks = [
+    { name: "Privacy Policy", href: "#" },
+    { name: "Refund Policy", href: "#" },
+    { name: "Terms of Use", href: "#" },
+    { name: "Cookies", href: "#" },
+    { name: "Compliance", href: "#" },
+    { name: "GDPR Policy", href: "#" },
   ];
 
   const socialLinks = [
@@ -29,9 +46,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-foreground text-background">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-foreground text-background relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -52,8 +73,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
-              India's Premier Education & Technology Expo. Where innovation meets
-              learning, and the future of education takes shape.
+              A pioneering company dedicated to promoting excellence in education through innovative solutions and platforms. Edu Expo Global Pvt Ltd unites key figures in Education Technology.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -102,11 +122,20 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-background/70">
-                  Yashobhoomi Convention Centre,
-                  <br />
-                  Dwarka, New Delhi, India
-                </span>
+                <div className="text-sm text-background/70">
+                  <p className="font-semibold mb-2">Hyderabad Office:</p>
+                  <p>
+                    EDU EXPO GLOBAL PVT LTD<br />
+                    Plot No. 47, PAR Richmond Park,<br />
+                    Kondapur, Hyderabad, Telangana - 500084, India
+                  </p>
+                  <p className="font-semibold mt-4 mb-2">Noida Office:</p>
+                  <p>
+                    EDU EXPO GLOBAL PVT LTD<br />
+                    B-820, 8th Floor, Tower-B, Noida One IT Park,<br />
+                    Sector-62, Noida – 201309, India
+                  </p>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary flex-shrink-0" />
@@ -129,32 +158,55 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Event Info */}
+          {/* Exhibitor */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <h3 className="font-display font-semibold text-lg mb-6 text-background">Event Details</h3>
-            <div className="bg-background/10 p-6 rounded-xl border border-background/20">
-              <p className="text-2xl font-display font-bold gradient-text mb-2">
-                22-24 Sept
-              </p>
-              <p className="font-semibold mb-1 text-background">2026</p>
-              <p className="text-sm text-background/70">
-                Yashobhoomi Convention Centre
-                <br />
-                New Delhi, India
-              </p>
-            </div>
+            <h3 className="font-display font-semibold text-lg mb-6 text-background">Exhibitor</h3>
+            <ul className="space-y-3">
+              {exhibitorLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Useful Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
+            <h3 className="font-display font-semibold text-lg mb-6 text-background">Useful Links</h3>
+            <ul className="space-y-3">
+              {usefulLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-background/60 text-center md:text-left">
-            © 2026 ET TECH X. All rights reserved.
+            © 2025 ET TECH X. All rights reserved. | Edu Expo Global Pvt Ltd
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm text-background/60 hover:text-primary transition-colors">

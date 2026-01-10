@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin, Twitter } from "lucide-react";
+import Section3D from "./3d/Section3D";
 
 const speakers = [
   {
@@ -30,9 +31,10 @@ const speakers = [
 
 const Speakers = () => {
   return (
-    <section id="speakers" className="py-24 relative overflow-hidden bg-section-gradient">
+    <section id="speakers" className="py-32 relative overflow-hidden bg-section-gradient section-divider">
       {/* Decorative */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <Section3D sectionId="speakers" color="#3b82f6" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -41,7 +43,7 @@ const Speakers = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm uppercase tracking-widest mb-4">
+          <span className="professional-badge mb-4">
             Featured Speakers
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
@@ -60,7 +62,7 @@ const Speakers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-card overflow-hidden group rounded-2xl border border-border shadow-sm hover:shadow-xl transition-all"
+              className="card-elevated overflow-hidden group"
             >
               <div className="relative">
                 <img

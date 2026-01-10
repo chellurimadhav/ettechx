@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { name: "Home", href: "#" },
-  { name: "About", href: "#about" },
+  { name: "About Us", href: "#about" },
   { name: "Conference", href: "#conference" },
-  { name: "Speakers", href: "#speakers" },
-  { name: "Exhibit", href: "#exhibit" },
-  { name: "Awards", href: "#awards" },
+  { name: "Why Visit", href: "#why-visit" },
+  { name: "Why Exhibit", href: "#why-exhibit" },
+  { name: "Blog", href: "#blog" },
+  { name: "Glimpse", href: "#glimpse" },
+  { name: "Contact Us", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -32,7 +34,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="w-3 h-3" />
-            <span className="text-xs sm:text-sm">22-24 September 2026 • Yashobhoomi, New Delhi</span>
+            <span className="text-xs sm:text-sm">11-12-13 December 2025 • HITEX Exhibition Centre, Hyderabad</span>
           </div>
         </div>
       </div>
@@ -41,7 +43,7 @@ const Navbar = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+        className="sticky top-0 z-50 bg-background/98 backdrop-blur-xl border-b border-border/50 shadow-sm"
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -73,7 +75,7 @@ const Navbar = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+                  className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors relative group"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -86,8 +88,14 @@ const Navbar = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
-              <Button className="bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-md hover:shadow-lg transition-shadow">
-                Register Now
+              <Button 
+                onClick={() => {
+                  const event = new CustomEvent('openRegistration');
+                  window.dispatchEvent(event);
+                }}
+                className="bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 font-semibold"
+              >
+                Visitor Registration
               </Button>
             </div>
 
@@ -121,8 +129,14 @@ const Navbar = () => {
                     {link.name}
                   </a>
                 ))}
-                <Button className="mt-4 w-full bg-gradient-to-r from-primary to-secondary text-primary-foreground">
-                  Register Now
+                <Button 
+                  onClick={() => {
+                    const event = new CustomEvent('openRegistration');
+                    window.dispatchEvent(event);
+                  }}
+                  className="mt-4 w-full bg-gradient-to-r from-primary to-secondary text-primary-foreground"
+                >
+                  Visitor Registration
                 </Button>
               </div>
             </motion.div>

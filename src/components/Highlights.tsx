@@ -14,7 +14,7 @@ const Highlights = () => {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Decorative */}
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/4 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -23,7 +23,7 @@ const Highlights = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm uppercase tracking-widest mb-4">
+          <span className="professional-badge mb-4">
             Exhibition Categories
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
