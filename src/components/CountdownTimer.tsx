@@ -48,11 +48,11 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   ];
 
   return (
-    <div className="glass-card p-6 neon-border">
-      <p className="text-sm font-medium text-muted-foreground text-center mb-4 uppercase tracking-widest">
+    <div className="bg-card p-8 rounded-2xl border border-border shadow-lg">
+      <p className="text-sm font-semibold text-primary text-center mb-6 uppercase tracking-widest">
         Event Starts In
       </p>
-      <div className="flex gap-3">
+      <div className="flex gap-4">
         {timeUnits.map((unit, index) => (
           <motion.div
             key={unit.label}
@@ -61,13 +61,13 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
             transition={{ delay: index * 0.1 }}
             className="flex flex-col items-center"
           >
-            <div className="w-16 h-16 bg-muted/50 rounded-lg flex items-center justify-center border border-border/50 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent" />
-              <span className="font-display text-2xl font-bold text-primary relative z-10">
+            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-md relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20" />
+              <span className="font-display text-2xl lg:text-3xl font-bold text-primary-foreground relative z-10">
                 {String(unit.value).padStart(2, "0")}
               </span>
             </div>
-            <span className="text-xs text-muted-foreground mt-2 uppercase tracking-wider">
+            <span className="text-xs text-muted-foreground mt-3 uppercase tracking-wider font-medium">
               {unit.label}
             </span>
           </motion.div>
