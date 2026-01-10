@@ -1,74 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ET TECH X - Futuristic Design System */
+/* ET TECH X - Professional Light Design System */
 
 @layer base {
   :root {
-    /* Dark futuristic theme as default */
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    /* Clean light professional theme */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Cyan/Teal neon primary */
-    --primary: 185 100% 50%;
-    --primary-foreground: 222 47% 6%;
+    /* Deep blue primary - professional and trustworthy */
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Electric blue secondary */
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 210 40% 98%;
+    /* Teal secondary - innovative and fresh */
+    --secondary: 173 80% 40%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 222 47% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 45%;
 
-    /* Green accent for success/highlights */
-    --accent: 142 71% 45%;
-    --accent-foreground: 210 40% 98%;
+    /* Orange accent for CTAs */
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 185 100% 50%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
     --radius: 0.75rem;
 
-    /* Custom colors for the event */
-    --neon-cyan: 185 100% 50%;
-    --neon-blue: 217 91% 60%;
-    --neon-purple: 280 100% 60%;
-    --neon-green: 142 71% 45%;
-    --dark-surface: 222 47% 10%;
-    --glass: 222 47% 15%;
+    /* Custom professional colors */
+    --deep-blue: 221 83% 53%;
+    --teal: 173 80% 40%;
+    --orange: 25 95% 53%;
+    --slate: 215 20% 45%;
+    --light-surface: 210 40% 98%;
+    --glass: 0 0% 100%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(185 100% 50%), hsl(217 91% 60%));
-    --gradient-hero: linear-gradient(180deg, hsl(222 47% 4%) 0%, hsl(222 47% 8%) 50%, hsl(222 47% 12%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(222 47% 12% / 0.8), hsl(222 47% 8% / 0.6));
-    --gradient-glow: radial-gradient(ellipse at center, hsl(185 100% 50% / 0.15), transparent 70%);
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(173 80% 40%));
+    --gradient-hero: linear-gradient(180deg, hsl(210 40% 98%) 0%, hsl(0 0% 100%) 50%, hsl(210 40% 96%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%), hsl(12 95% 60%));
 
     /* Shadows */
-    --shadow-neon: 0 0 20px hsl(185 100% 50% / 0.3), 0 0 40px hsl(185 100% 50% / 0.1);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 60px hsl(185 100% 50% / 0.2);
+    --shadow-soft: 0 4px 20px hsl(221 83% 53% / 0.08);
+    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.06);
+    --shadow-hover: 0 8px 30px hsl(221 83% 53% / 0.12);
+    --shadow-glow: 0 0 40px hsl(221 83% 53% / 0.15);
 
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 185 100% 50%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 47% 15%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 185 100% 50%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 221 83% 53%;
   }
 }
 
@@ -87,22 +88,18 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+    @apply bg-card border border-border rounded-xl;
     box-shadow: var(--shadow-card);
   }
 
-  .neon-text {
-    text-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary) / 0.5);
-  }
-
-  .neon-border {
-    box-shadow: var(--shadow-neon);
+  .glass-card:hover {
+    box-shadow: var(--shadow-hover);
   }
 
   .gradient-text {
@@ -110,24 +107,41 @@
     background-image: var(--gradient-primary);
   }
 
+  .accent-gradient {
+    background-image: var(--gradient-accent);
+  }
+
   .floating {
     animation: float 6s ease-in-out infinite;
   }
 
   .pulse-glow {
-    animation: pulseGlow 2s ease-in-out infinite;
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  .professional-shadow {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
   }
 }
 
 @layer utilities {
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-15px); }
   }
 
   @keyframes pulseGlow {
-    0%, 100% { opacity: 1; box-shadow: var(--shadow-neon); }
-    50% { opacity: 0.8; box-shadow: 0 0 30px hsl(185 100% 50% / 0.5), 0 0 60px hsl(185 100% 50% / 0.2); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 
   @keyframes shimmer {
@@ -135,9 +149,24 @@
     100% { background-position: 200% 0; }
   }
 
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .animate-shimmer {
-    background: linear-gradient(90deg, transparent, hsl(185 100% 50% / 0.1), transparent);
+    background: linear-gradient(90deg, transparent, hsl(221 83% 53% / 0.1), transparent);
     background-size: 200% 100%;
     animation: shimmer 3s infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 }
