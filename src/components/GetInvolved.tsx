@@ -28,46 +28,90 @@ const GetInvolved = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Exhibit */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -40, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
-            className="card-elevated p-8 group"
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            whileHover={{ scale: 1.02, y: -8 }}
+            className="card-elevated p-8 group smooth-transition"
           >
-            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+            <motion.div 
+              className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-lg"
+              style={{
+                background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%), hsl(330 81% 60%))'
+              }}
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
               <Building2 className="w-8 h-8 text-white" />
-            </div>
+            </motion.div>
             <h3 className="font-display text-2xl font-bold mb-4 text-foreground">
               EXHIBIT AT ET TECH X 2025
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Showcase, digitally or in-person, your innovations, solutions and open innovation initiatives. Sponsor and add your brand to an incredible zone. There's many ways to get involved!
             </p>
-            <Button className="bg-gradient-to-r from-primary to-secondary text-white shadow-md hover:shadow-lg">
-              Contact Us
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button 
+                className="text-white shadow-md hover:shadow-xl transition-all duration-500 animate-gradient"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%), hsl(330 81% 60%), hsl(16 85% 57%))',
+                  backgroundSize: '200% 200%'
+                }}
+              >
+                Contact Us
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                </motion.span>
+              </Button>
+            </motion.div>
           </motion.div>
 
           {/* Partner */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
-            className="card-elevated p-8 group"
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            whileHover={{ scale: 1.02, y: -8 }}
+            className="card-elevated p-8 group smooth-transition"
           >
-            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+            <motion.div 
+              className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-lg"
+              style={{
+                background: 'linear-gradient(135deg, hsl(173 80% 40%), hsl(16 85% 57%), hsl(330 81% 60%))'
+              }}
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
               <Handshake className="w-8 h-8 text-white" />
-            </div>
+            </motion.div>
             <h3 className="font-display text-2xl font-bold mb-4 text-foreground">
               Partner at ET TECH X 2025
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Each year 200+ journalists, representing over 15 nationalities, attend ET TECH X Expo to share news of top-level speakers and immersive innovations to the rest of the world.
             </p>
-            <Button variant="outline" className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white">
-              Contact Us
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button variant="outline" className="border-2 border-secondary text-secondary hover:bg-gradient-to-r hover:from-secondary hover:via-accent hover:to-primary hover:text-white hover:border-transparent transition-all duration-500">
+                Contact Us
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                </motion.span>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </div>

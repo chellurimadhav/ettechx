@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HeroSlider from "@/components/HeroSlider";
@@ -18,6 +19,8 @@ import VideoGallery from "@/components/VideoGallery";
 import Scroll3D from "@/components/3d/Scroll3D";
 import Section3D from "@/components/3d/Section3D";
 import ScrollParallax from "@/components/3d/ScrollParallax";
+import ScrollReveal from "@/components/ScrollReveal";
+import PageLoader from "@/components/PageLoader";
 
 const Index = () => {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
@@ -34,44 +37,106 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Global scroll-based 3D background with parallax */}
-      <ScrollParallax />
-      <Scroll3D />
-      
-      <div className="relative z-10">
-        <Navbar />
-        <Hero />
-        <HeroSlider />
-        <QuickActions />
+    <>
+      <PageLoader />
+      <motion.div 
+        className="min-h-screen bg-background relative"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+      >
+        {/* Global scroll-based 3D background with parallax */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
+        >
+          <ScrollParallax />
+          <Scroll3D />
+        </motion.div>
         
-        <div className="relative">
-          <Section3D sectionId="about" color="#3b82f6" />
-          <BusinessInnovation />
+        <div className="relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
+          >
+            <Navbar />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.7 }}
+          >
+            <Hero />
+          </motion.div>
+        
+          <ScrollReveal direction="up" delay={0.2} duration={0.8}>
+            <HeroSlider />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+            <QuickActions />
+          </ScrollReveal>
+          
+          <div className="relative">
+            <Section3D sectionId="about" color="#3b82f6" />
+            <ScrollReveal direction="up" delay={0.2} duration={0.8}>
+              <BusinessInnovation />
+            </ScrollReveal>
+          </div>
+          
+          <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+            <Statistics />
+          </ScrollReveal>
+          
+          <div className="relative">
+            <Section3D sectionId="mission" color="#14b8a6" />
+            <ScrollReveal direction="up" delay={0.2} duration={0.8}>
+              <FutureEducation />
+            </ScrollReveal>
+          </div>
+          
+          <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+            <GetInvolved />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.2} duration={0.8}>
+            <Speakers />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+            <VideoGallery />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.2} duration={0.8}>
+            <Testimonials />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+            <Partners />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.2} duration={0.8}>
+            <ContactSection />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.1} duration={0.8}>
+            <CTA />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="fade" delay={0.1} duration={0.8}>
+            <Footer />
+          </ScrollReveal>
         </div>
         
-        <Statistics />
-        
-        <div className="relative">
-          <Section3D sectionId="mission" color="#14b8a6" />
-          <FutureEducation />
-        </div>
-        
-        <GetInvolved />
-        <Speakers />
-        <VideoGallery />
-        <Testimonials />
-        <Partners />
-        <ContactSection />
-        <CTA />
-        <Footer />
-      </div>
-      
-      <VisitorRegistration
-        isOpen={isRegistrationOpen}
-        onClose={() => setIsRegistrationOpen(false)}
-      />
-    </div>
+        <VisitorRegistration
+          isOpen={isRegistrationOpen}
+          onClose={() => setIsRegistrationOpen(false)}
+        />
+      </motion.div>
+    </>
   );
 };
 

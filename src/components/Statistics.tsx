@@ -92,8 +92,13 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
 const Statistics = () => {
   return (
     <section id="statistics" className="py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary" />
+      {/* Colorful Background */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%), hsl(330 81% 60%), hsl(16 85% 57%), hsl(173 80% 40%))'
+        }}
+      />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30" />
       <Section3D sectionId="statistics" color="#ffffff" />
 
@@ -119,13 +124,38 @@ const Statistics = () => {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white/10 backdrop-blur-md p-8 text-center rounded-2xl border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300"
+              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              whileHover={{ scale: 1.1, y: -8, rotate: [0, -2, 2, 0] }}
+              className="bg-white/15 backdrop-blur-md p-8 text-center rounded-2xl border-2 border-white/30 hover:bg-white/25 hover:border-white/50 smooth-transition shadow-lg"
+              style={{
+                background: index % 5 === 0 
+                  ? 'linear-gradient(135deg, hsl(221 83% 53% / 0.2), hsl(262 83% 58% / 0.15))'
+                  : index % 5 === 1
+                  ? 'linear-gradient(135deg, hsl(173 80% 40% / 0.2), hsl(16 85% 57% / 0.15))'
+                  : index % 5 === 2
+                  ? 'linear-gradient(135deg, hsl(330 81% 60% / 0.2), hsl(16 85% 57% / 0.15))'
+                  : index % 5 === 3
+                  ? 'linear-gradient(135deg, hsl(262 83% 58% / 0.2), hsl(221 83% 53% / 0.15))'
+                  : 'linear-gradient(135deg, hsl(45 93% 58% / 0.2), hsl(330 81% 60% / 0.15))'
+              }}
             >
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-white/20 flex items-center justify-center mb-4">
+              <div 
+                className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center mb-4 shadow-lg"
+                style={{
+                  background: index % 5 === 0 
+                    ? 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))'
+                    : index % 5 === 1
+                    ? 'linear-gradient(135deg, hsl(173 80% 40%), hsl(16 85% 57%))'
+                    : index % 5 === 2
+                    ? 'linear-gradient(135deg, hsl(330 81% 60%), hsl(16 85% 57%))'
+                    : index % 5 === 3
+                    ? 'linear-gradient(135deg, hsl(262 83% 58%), hsl(221 83% 53%))'
+                    : 'linear-gradient(135deg, hsl(45 93% 58%), hsl(330 81% 60%))'
+                }}
+              >
                 <stat.icon className="w-8 h-8 text-white" />
               </div>
               <p className="font-display text-4xl md:text-5xl font-bold text-white mb-2">

@@ -63,14 +63,34 @@ const BusinessInnovation = () => {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="card-elevated p-8 text-center group cursor-pointer"
+              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              whileHover={{ scale: 1.08, y: -8 }}
+              className="card-elevated p-8 text-center group cursor-pointer smooth-transition border-2 border-transparent hover:border-primary/30"
+              style={{
+                background: index % 4 === 0 
+                  ? 'linear-gradient(135deg, hsl(0 0% 100%), hsl(221 83% 53% / 0.06), hsl(262 83% 58% / 0.04))'
+                  : index % 4 === 1
+                  ? 'linear-gradient(135deg, hsl(0 0% 100%), hsl(173 80% 40% / 0.06), hsl(16 85% 57% / 0.04))'
+                  : index % 4 === 2
+                  ? 'linear-gradient(135deg, hsl(0 0% 100%), hsl(262 83% 58% / 0.06), hsl(330 81% 60% / 0.04))'
+                  : 'linear-gradient(135deg, hsl(0 0% 100%), hsl(16 85% 57% / 0.06), hsl(330 81% 60% / 0.04))'
+              }}
             >
-              <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md relative overflow-hidden">
+              <div 
+                className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg relative overflow-hidden"
+                style={{
+                  background: index % 4 === 0 
+                    ? 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%), hsl(330 81% 60%))'
+                    : index % 4 === 1
+                    ? 'linear-gradient(135deg, hsl(173 80% 40%), hsl(16 85% 57%), hsl(45 93% 58%))'
+                    : index % 4 === 2
+                    ? 'linear-gradient(135deg, hsl(262 83% 58%), hsl(330 81% 60%), hsl(16 85% 57%))'
+                    : 'linear-gradient(135deg, hsl(16 85% 57%), hsl(330 81% 60%), hsl(262 83% 58%))'
+                }}
+              >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
                   <Icon3D type={feature.icon3D} color={feature.color3D} />
                 </div>

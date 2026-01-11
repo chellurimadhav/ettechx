@@ -58,33 +58,60 @@ const Speakers = () => {
           {speakers.map((speaker, index) => (
             <motion.div
               key={speaker.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="card-elevated overflow-hidden group"
+              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              whileHover={{ scale: 1.05, y: -8 }}
+              className="card-elevated overflow-hidden group smooth-transition border-2 border-transparent hover:border-primary/30"
+              style={{
+                background: index % 4 === 0 
+                  ? 'linear-gradient(135deg, hsl(0 0% 100%), hsl(221 83% 53% / 0.05))'
+                  : index % 4 === 1
+                  ? 'linear-gradient(135deg, hsl(0 0% 100%), hsl(262 83% 58% / 0.05))'
+                  : index % 4 === 2
+                  ? 'linear-gradient(135deg, hsl(0 0% 100%), hsl(330 81% 60% / 0.05))'
+                  : 'linear-gradient(135deg, hsl(0 0% 100%), hsl(16 85% 57% / 0.05))'
+              }}
             >
               <div className="relative">
                 <img
                   src={speaker.image}
                   alt={speaker.name}
-                  className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{
+                    background: index % 4 === 0 
+                      ? 'linear-gradient(to top, hsl(221 83% 53% / 0.9), hsl(262 83% 58% / 0.7), transparent)'
+                      : index % 4 === 1
+                      ? 'linear-gradient(to top, hsl(262 83% 58% / 0.9), hsl(330 81% 60% / 0.7), transparent)'
+                      : index % 4 === 2
+                      ? 'linear-gradient(to top, hsl(330 81% 60% / 0.9), hsl(16 85% 57% / 0.7), transparent)'
+                      : 'linear-gradient(to top, hsl(16 85% 57% / 0.9), hsl(173 80% 40% / 0.7), transparent)'
+                  }}
+                />
                 
                 {/* Social Links */}
                 <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0">
                   <a
                     href="#"
-                    className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-lg"
+                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))'
+                    }}
                   >
-                    <Linkedin className="w-5 h-5" />
+                    <Linkedin className="w-5 h-5 text-white" />
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-lg"
+                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(173 80% 40%), hsl(16 85% 57%))'
+                    }}
                   >
-                    <Twitter className="w-5 h-5" />
+                    <Twitter className="w-5 h-5 text-white" />
                   </a>
                 </div>
               </div>

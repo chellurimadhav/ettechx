@@ -115,8 +115,8 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, hsl(210 40% 98%) 0%, hsl(221 83% 53% / 0.05) 50%, hsl(173 80% 40% / 0.05) 100%)',
-        'section-gradient': 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%)',
+        'hero-gradient': 'linear-gradient(180deg, hsl(221 83% 53% / 0.15) 0%, hsl(262 83% 58% / 0.12) 25%, hsl(330 81% 60% / 0.10) 50%, hsl(16 85% 57% / 0.12) 75%, hsl(173 80% 40% / 0.15) 100%)',
+        'section-gradient': 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(221 83% 53% / 0.04) 30%, hsl(262 83% 58% / 0.03) 60%, hsl(330 81% 60% / 0.02) 80%, hsl(210 40% 98%) 100%)',
       },
     },
   },

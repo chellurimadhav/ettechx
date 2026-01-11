@@ -46,10 +46,32 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-foreground text-background relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+    <footer className="relative overflow-hidden" style={{
+      background: 'linear-gradient(180deg, hsl(222 47% 11%), hsl(222 47% 8%))'
+    }}>
+      {/* Premium Decorative Elements */}
+      <motion.div 
+        className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl"
+        style={{
+          background: 'radial-gradient(circle, hsl(221 83% 53% / 0.2), transparent)'
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.3, 0.2],
+        }}
+        transition={{ duration: 8, repeat: Infinity }}
+      />
+      <motion.div 
+        className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
+        style={{
+          background: 'radial-gradient(circle, hsl(173 80% 40% / 0.2), transparent)'
+        }}
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.3, 0.2],
+        }}
+        transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+      />
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
@@ -76,15 +98,31 @@ const Footer = () => {
               A pioneering company dedicated to promoting excellence in education through innovative solutions and platforms. Edu Expo Global Pvt Ltd unites key figures in Education Technology.
             </p>
             <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
+              {socialLinks.map((social, index) => (
+                <motion.a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-background/10 flex items-center justify-center text-background/70 hover:bg-primary hover:text-white transition-colors"
+                  className="relative w-12 h-12 rounded-xl flex items-center justify-center text-background/70 overflow-hidden group"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(221 83% 53% / 0.1), hsl(262 83% 58% / 0.1))',
+                    border: '1px solid hsl(221 83% 53% / 0.2)'
+                  }}
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <social.icon className="w-5 h-5" />
-                </a>
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))'
+                    }}
+                  />
+                  <social.icon className="w-5 h-5 relative z-10 group-hover:text-white transition-colors" />
+                </motion.a>
               ))}
             </div>
           </motion.div>
@@ -98,15 +136,22 @@ const Footer = () => {
           >
             <h3 className="font-display font-semibold text-lg mb-6 text-background">Quick Links</h3>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
+              {quickLinks.map((link, index) => (
+                <motion.li 
+                  key={link.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                >
                   <a
                     href={link.href}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    className="text-background/70 hover:text-primary transition-colors text-sm flex items-center gap-2 group"
                   >
+                    <span className="w-0 h-0.5 bg-primary group-hover:w-2 transition-all" />
                     {link.name}
                   </a>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>

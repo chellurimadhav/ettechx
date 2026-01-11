@@ -20,7 +20,15 @@ const Navbar = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground">
+      <motion.div 
+        className="text-white"
+        style={{
+          background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%), hsl(330 81% 60%))'
+        }}
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
+      >
         <div className="container mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             <a href="tel:+919346407359" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
@@ -37,13 +45,18 @@ const Navbar = () => {
             <span className="text-xs sm:text-sm">11-12-13 December 2025 • HITEX Exhibition Centre, Hyderabad</span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Navbar */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="sticky top-0 z-50 bg-background/98 backdrop-blur-xl border-b border-border/50 shadow-sm"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
+        className="sticky top-0 z-50 bg-background/95 backdrop-blur-2xl border-b-2 border-primary/10 shadow-lg"
+        style={{
+          background: 'linear-gradient(180deg, hsl(0 0% 100% / 0.98), hsl(221 83% 53% / 0.02))',
+          boxShadow: '0 4px 20px hsl(221 83% 53% / 0.1)'
+        }}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -51,17 +64,29 @@ const Navbar = () => {
             <motion.a
               href="#"
               className="flex items-center gap-3"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05 }}
             >
               <div className="relative w-10 h-10 md:w-12 md:h-12">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-lg shadow-md" />
+                <div 
+                  className="absolute inset-0 rounded-lg shadow-lg"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%), hsl(330 81% 60%))'
+                  }}
+                />
                 <div className="absolute inset-1 bg-background rounded-md flex items-center justify-center">
-                  <span className="font-display font-bold text-primary text-sm md:text-base">ET</span>
+                  <span 
+                    className="font-display font-bold text-sm md:text-base bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))'
+                    }}
+                  >
+                    ET
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-bold text-lg md:text-xl tracking-wide text-foreground">
-                  ET TECH <span className="text-primary">X</span>
+                  ET TECH <span className="gradient-text">X</span>
                 </span>
                 <span className="text-[10px] text-muted-foreground tracking-wider uppercase">
                   Education & Technology Expo
@@ -78,25 +103,36 @@ const Navbar = () => {
                   className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors relative group"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.1, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                  whileHover={{ y: -2 }}
                 >
                   {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                  <motion.span 
+                    className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary via-secondary to-accent"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  />
                 </motion.a>
               ))}
             </div>
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
-              <Button 
-                onClick={() => {
-                  const event = new CustomEvent('openRegistration');
-                  window.dispatchEvent(event);
-                }}
-                className="bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 font-semibold"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Visitor Registration
-              </Button>
+                <Button 
+                  onClick={() => {
+                    const event = new CustomEvent('openRegistration');
+                    window.dispatchEvent(event);
+                  }}
+                  className="bg-gradient-to-r from-primary via-secondary to-accent text-primary-foreground shadow-md hover:shadow-xl transition-all duration-500 font-semibold animate-gradient"
+                >
+                  Visitor Registration
+                </Button>
+              </motion.div>
             </div>
 
             {/* Mobile Menu Toggle */}
