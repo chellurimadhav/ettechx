@@ -12,26 +12,35 @@ function useElementScroll(sectionId?: string) {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      if (!sectionId) {
-        setScrollProgress(window.scrollY);
-        return;
-      }
-      
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const elementTop = rect.top + window.scrollY;
-        const elementHeight = rect.height;
-        const scrollPosition = window.scrollY + windowHeight / 2;
-        
-        const progress = Math.max(0, Math.min(1, (scrollPosition - elementTop) / elementHeight));
-        setScrollProgress(progress);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!sectionId) {
+            setScrollProgress(window.scrollY);
+            ticking = false;
+            return;
+          }
+          
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const elementTop = rect.top + window.scrollY;
+            const elementHeight = rect.height;
+            const scrollPosition = window.scrollY + windowHeight / 2;
+            
+            const progress = Math.max(0, Math.min(1, (scrollPosition - elementTop) / elementHeight));
+            setScrollProgress(progress);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [sectionId]);

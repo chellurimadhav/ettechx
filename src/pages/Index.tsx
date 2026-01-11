@@ -21,9 +21,11 @@ import Section3D from "@/components/3d/Section3D";
 import ScrollParallax from "@/components/3d/ScrollParallax";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageLoader from "@/components/PageLoader";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleOpenRegistration = () => {
@@ -45,15 +47,17 @@ const Index = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       >
-        {/* Global scroll-based 3D background with parallax */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
-        >
-          <ScrollParallax />
-          <Scroll3D />
-        </motion.div>
+        {/* Global scroll-based 3D background with parallax - Only on desktop */}
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
+          >
+            <ScrollParallax />
+            <Scroll3D />
+          </motion.div>
+        )}
         
         <div className="relative z-10">
           <motion.div
@@ -81,7 +85,7 @@ const Index = () => {
           </ScrollReveal>
           
           <div className="relative">
-            <Section3D sectionId="about" color="#3b82f6" />
+            {!isMobile && <Section3D sectionId="about" color="#3b82f6" />}
             <ScrollReveal direction="up" delay={0.2} duration={0.8}>
               <BusinessInnovation />
             </ScrollReveal>
@@ -92,7 +96,7 @@ const Index = () => {
           </ScrollReveal>
           
           <div className="relative">
-            <Section3D sectionId="mission" color="#14b8a6" />
+            {!isMobile && <Section3D sectionId="mission" color="#14b8a6" />}
             <ScrollReveal direction="up" delay={0.2} duration={0.8}>
               <FutureEducation />
             </ScrollReveal>

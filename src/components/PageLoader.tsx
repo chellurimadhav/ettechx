@@ -5,12 +5,28 @@ const PageLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate page load
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200);
+    // Wait for page to be ready, but don't wait too long
+    const handleLoad = () => {
+      // Minimum display time for smooth transition
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 600);
+    };
 
-    return () => clearTimeout(timer);
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      // Fallback: hide after max 1.5s even if page isn't fully loaded
+      const fallback = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+      
+      return () => {
+        window.removeEventListener('load', handleLoad);
+        clearTimeout(fallback);
+      };
+    }
   }, []);
 
   return (

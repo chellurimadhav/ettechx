@@ -29,20 +29,22 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
       >
-        <div className="container mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <a href="tel:+919346407359" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <Phone className="w-3 h-3" />
-              <span className="hidden sm:inline">+91-9346407359</span>
+        <div className="container mx-auto px-3 sm:px-4 py-2 flex flex-wrap justify-between items-center text-xs sm:text-sm gap-2">
+          <div className="flex items-center gap-3 sm:gap-6 flex-wrap">
+            <a href="tel:+919346407359" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity">
+              <Phone className="w-3 h-3 flex-shrink-0" />
+              <span className="hidden xs:inline sm:inline">+91-9346407359</span>
+              <span className="xs:hidden">Call</span>
             </a>
-            <a href="mailto:ettechx@ettechx.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <Mail className="w-3 h-3" />
-              <span className="hidden sm:inline">ettechx@ettechx.com</span>
+            <a href="mailto:ettechx@ettechx.com" className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity">
+              <Mail className="w-3 h-3 flex-shrink-0" />
+              <span className="hidden md:inline">ettechx@ettechx.com</span>
+              <span className="md:hidden">Email</span>
             </a>
           </div>
-          <div className="flex items-center gap-2">
-            <MapPin className="w-3 h-3" />
-            <span className="text-xs sm:text-sm">11-12-13 December 2025 • HITEX Exhibition Centre, Hyderabad</span>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <MapPin className="w-3 h-3 flex-shrink-0" />
+            <span className="text-[10px] xs:text-xs sm:text-sm">11-12-13 Dec 2025 • HITEX, Hyderabad</span>
           </div>
         </div>
       </motion.div>
@@ -58,15 +60,15 @@ const Navbar = () => {
           boxShadow: '0 4px 20px hsl(221 83% 53% / 0.1)'
         }}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
             {/* Logo */}
             <motion.a
               href="#"
               className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="relative w-10 h-10 md:w-12 md:h-12">
+              <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12">
                 <div 
                   className="absolute inset-0 rounded-lg shadow-lg"
                   style={{
@@ -75,7 +77,7 @@ const Navbar = () => {
                 />
                 <div className="absolute inset-1 bg-background rounded-md flex items-center justify-center">
                   <span 
-                    className="font-display font-bold text-sm md:text-base bg-clip-text text-transparent"
+                    className="font-display font-bold text-xs sm:text-sm md:text-base bg-clip-text text-transparent"
                     style={{
                       backgroundImage: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))'
                     }}
@@ -85,10 +87,10 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-bold text-lg md:text-xl tracking-wide text-foreground">
+                <span className="font-display font-bold text-base sm:text-lg md:text-xl tracking-wide text-foreground">
                   ET TECH <span className="gradient-text">X</span>
                 </span>
-                <span className="text-[10px] text-muted-foreground tracking-wider uppercase">
+                <span className="text-[9px] sm:text-[10px] text-muted-foreground tracking-wider uppercase hidden xs:block">
                   Education & Technology Expo
                 </span>
               </div>

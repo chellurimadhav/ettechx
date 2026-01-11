@@ -3,15 +3,24 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Mesh, Group } from 'three';
 import * as THREE from 'three';
 
-// Hook to get scroll position
+// Hook to get scroll position with throttling
 function useScrollPosition() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
