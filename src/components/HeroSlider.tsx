@@ -40,7 +40,7 @@ const HeroSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+    <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden" style={{ contain: "layout style paint" }}>
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -49,6 +49,7 @@ const HeroSlider = () => {
           exit={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.5 }}
           className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10"
+          style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
         >
           <div className="container mx-auto px-4 text-center">
             <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold text-foreground">

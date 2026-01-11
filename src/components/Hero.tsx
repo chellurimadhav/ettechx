@@ -11,7 +11,8 @@ const Hero = () => {
       className="relative min-h-[95vh] sm:min-h-[90vh] md:min-h-[95vh] flex items-center overflow-hidden bg-hero-gradient"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.8 }}
+      transition={{ duration: isMobile ? 0.3 : 1, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0.1 : 0.8 }}
+      style={{ willChange: "opacity", transform: "translateZ(0)" }}
     >
       {/* Decorative Elements */}
       <motion.div 
@@ -21,44 +22,48 @@ const Hero = () => {
         transition={{ duration: isMobile ? 0.6 : 1.2, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0.3 : 0.9 }}
       >
         {/* Colorful Gradient Orbs - Reduced on mobile */}
-        <motion.div
-          className="absolute top-20 right-[10%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full blur-[60px] sm:blur-[80px] md:blur-[100px]"
-          style={{
-            background: 'linear-gradient(135deg, hsl(221 83% 53% / 0.3), hsl(262 83% 58% / 0.25))'
-          }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.4, 0.6, 0.4],
-            x: [0, 40, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 left-[5%] w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] rounded-full blur-[50px] sm:blur-[70px] md:blur-[80px]"
-          style={{
-            background: 'linear-gradient(135deg, hsl(173 80% 40% / 0.3), hsl(16 85% 57% / 0.25))'
-          }}
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, -30, 0],
-            y: [0, 40, 0],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px] rounded-full blur-[50px] sm:blur-[70px] md:blur-[80px]"
-          style={{
-            background: 'linear-gradient(135deg, hsl(330 81% 60% / 0.25), hsl(45 93% 58% / 0.2))'
-          }}
-          animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.3, 0.5, 0.3],
-            rotate: [0, 180, 360],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-20 right-[10%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full blur-[60px] sm:blur-[80px] md:blur-[100px]"
+              style={{
+                background: 'linear-gradient(135deg, hsl(221 83% 53% / 0.3), hsl(262 83% 58% / 0.25))'
+              }}
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.4, 0.6, 0.4],
+                x: [0, 40, 0],
+                y: [0, -30, 0],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-20 left-[5%] w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] rounded-full blur-[50px] sm:blur-[70px] md:blur-[80px]"
+              style={{
+                background: 'linear-gradient(135deg, hsl(173 80% 40% / 0.3), hsl(16 85% 57% / 0.25))'
+              }}
+              animate={{
+                scale: [1.1, 1, 1.1],
+                opacity: [0.3, 0.5, 0.3],
+                x: [0, -30, 0],
+                y: [0, 40, 0],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px] rounded-full blur-[50px] sm:blur-[70px] md:blur-[80px]"
+              style={{
+                background: 'linear-gradient(135deg, hsl(330 81% 60% / 0.25), hsl(45 93% 58% / 0.2))'
+              }}
+              animate={{
+                scale: [1, 1.4, 1],
+                opacity: [0.3, 0.5, 0.3],
+                rotate: [0, 180, 360],
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
+        )}
         <motion.div
           className="hidden sm:block absolute top-40 right-[30%] w-[150px] h-[150px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] rounded-full blur-[40px] sm:blur-[50px] md:blur-[60px]"
           style={{
@@ -113,9 +118,9 @@ const Hero = () => {
       </motion.div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 relative z-[10]">
+      <div className="container mx-auto px-4 sm:px-6 relative z-[10]" style={{ contain: "layout style" }}>
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-          <div className="max-w-2xl relative z-[20]">
+          <div className="max-w-2xl relative z-[20]" style={{ contain: "layout" }}>
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -143,7 +148,7 @@ const Hero = () => {
               <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                transition={{ delay: isMobile ? 0.2 : 0.4, duration: isMobile ? 0.3 : 0.6 }}
               >
                 ET TECH
               </motion.span>
@@ -151,7 +156,13 @@ const Hero = () => {
                 className="gradient-text animate-gradient"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.6, type: "spring", stiffness: 200 }}
+                transition={{ 
+                  delay: isMobile ? 0.25 : 0.5, 
+                  duration: isMobile ? 0.3 : 0.6, 
+                  type: isMobile ? "tween" : "spring", 
+                  stiffness: isMobile ? undefined : 200,
+                  ease: isMobile ? [0.25, 0.1, 0.25, 1] : undefined
+                }}
               >
                 {" "}X
               </motion.span>
@@ -160,7 +171,7 @@ const Hero = () => {
                 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-muted-foreground mt-2 block"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
+                transition={{ delay: isMobile ? 0.3 : 0.6, duration: isMobile ? 0.3 : 0.6 }}
               >
                 Where Business Meets Innovation
               </motion.span>
@@ -170,7 +181,7 @@ const Hero = () => {
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ delay: isMobile ? 0.35 : 0.7, duration: isMobile ? 0.3 : 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mb-6 sm:mb-8 md:mb-10 leading-relaxed px-2 sm:px-0"
             >
               ET TECH X encourages innovations by connecting StartUps, Educational and Technology Leaders, major corporations and Investors responding to our World's Biggest Challenges.
@@ -180,23 +191,27 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ delay: isMobile ? 0.4 : 0.8, duration: isMobile ? 0.3 : 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-10 px-2 sm:px-0"
             >
               <motion.div 
                 className="card-elevated flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-3 sm:py-4 border-2 border-transparent hover:border-primary/30"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(221 83% 53% / 0.05))'
+                  background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(221 83% 53% / 0.05))',
+                  willChange: isMobile ? "auto" : "transform",
+                  transform: "translateZ(0)"
                 }}
-                whileHover={{ scale: 1.05, y: -4 }}
+                whileHover={isMobile ? {} : { scale: 1.05, y: -4 }}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 <motion.div 
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0"
                   style={{
-                    background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))'
+                    background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))',
+                    willChange: isMobile ? "auto" : "transform",
+                    transform: "translateZ(0)"
                   }}
-                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  whileHover={isMobile ? {} : { rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
@@ -209,17 +224,21 @@ const Hero = () => {
               <motion.div 
                 className="card-elevated flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-3 sm:py-4 border-2 border-transparent hover:border-secondary/30"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(173 80% 40% / 0.05))'
+                  background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(173 80% 40% / 0.05))',
+                  willChange: isMobile ? "auto" : "transform",
+                  transform: "translateZ(0)"
                 }}
-                whileHover={{ scale: 1.05, y: -4 }}
+                whileHover={isMobile ? {} : { scale: 1.05, y: -4 }}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 <motion.div 
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0"
                   style={{
-                    background: 'linear-gradient(135deg, hsl(173 80% 40%), hsl(16 85% 57%))'
+                    background: 'linear-gradient(135deg, hsl(173 80% 40%), hsl(16 85% 57%))',
+                    willChange: isMobile ? "auto" : "transform",
+                    transform: "translateZ(0)"
                   }}
-                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  whileHover={isMobile ? {} : { rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
@@ -232,17 +251,21 @@ const Hero = () => {
               <motion.div 
                 className="card-elevated flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-3 sm:py-4 border-2 border-transparent hover:border-accent/30"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(16 85% 57% / 0.05))'
+                  background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(16 85% 57% / 0.05))',
+                  willChange: isMobile ? "auto" : "transform",
+                  transform: "translateZ(0)"
                 }}
-                whileHover={{ scale: 1.05, y: -4 }}
+                whileHover={isMobile ? {} : { scale: 1.05, y: -4 }}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 <motion.div 
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0"
                   style={{
-                    background: 'linear-gradient(135deg, hsl(16 85% 57%), hsl(330 81% 60%))'
+                    background: 'linear-gradient(135deg, hsl(16 85% 57%), hsl(330 81% 60%))',
+                    willChange: isMobile ? "auto" : "transform",
+                    transform: "translateZ(0)"
                   }}
-                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  whileHover={isMobile ? {} : { rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
@@ -258,7 +281,7 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ delay: isMobile ? 0.45 : 0.9, duration: isMobile ? 0.3 : 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="flex flex-wrap gap-3 sm:gap-4 px-2 sm:px-0"
             >
               <motion.div
@@ -278,12 +301,16 @@ const Hero = () => {
                   className="text-white shadow-lg hover:shadow-2xl transition-all duration-500 font-semibold animate-gradient group text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
                 >
                   I want to attend
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
+                  {isMobile ? (
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline-block" />
-                  </motion.span>
+                  ) : (
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline-block" />
+                    </motion.span>
+                  )}
                 </Button>
               </motion.div>
               <motion.div

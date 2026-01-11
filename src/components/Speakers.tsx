@@ -78,7 +78,17 @@ const Speakers = () => {
                 <img
                   src={speaker.image}
                   alt={speaker.name}
+                  width={400}
+                  height={400}
+                  loading="lazy"
                   className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500"
+                  style={{ 
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "400px 400px"
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.src = "https://via.placeholder.com/400x400/3b82f6/ffffff?text=Speaker";
+                  }}
                 />
                 <div 
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"

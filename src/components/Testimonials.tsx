@@ -129,7 +129,14 @@ const Testimonials = () => {
                     <motion.img
                       src={video.thumbnail}
                       alt={video.title}
+                      width={640}
+                      height={360}
+                      loading="lazy"
                       className="w-full h-full object-cover"
+                      style={{ 
+                        contentVisibility: "auto",
+                        containIntrinsicSize: "640px 360px"
+                      }}
                       whileHover={{ scale: 1.15 }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                       onError={(e) => {
@@ -249,11 +256,21 @@ const Testimonials = () => {
 
                 {/* Author */}
                 <div className="flex items-center gap-4 pt-6 border-t border-border">
-                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20">
+                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20 flex-shrink-0">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
+                      width={56}
+                      height={56}
+                      loading="lazy"
                       className="w-full h-full object-cover"
+                      style={{ 
+                        contentVisibility: "auto",
+                        containIntrinsicSize: "56px 56px"
+                      }}
+                      onError={(e) => {
+                        e.currentTarget.src = "https://via.placeholder.com/56x56/3b82f6/ffffff?text=User";
+                      }}
                     />
                   </div>
                   <div>
