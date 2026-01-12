@@ -1,10 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const PageLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
+    // On mobile, hide loader immediately
+    if (isMobile) {
+      setIsLoading(false);
+      return;
+    }
+
     // Wait for page to be ready, but don't wait too long
     const handleLoad = () => {
       // Minimum display time for smooth transition
@@ -27,7 +35,12 @@ const PageLoader = () => {
         clearTimeout(fallback);
       };
     }
-  }, []);
+  }, [isMobile]);
+
+  // Don't show loader on mobile at all
+  if (isMobile || !isLoading) {
+    return null;
+  }
 
   return (
     <AnimatePresence>

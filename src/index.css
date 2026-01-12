@@ -222,34 +222,80 @@
     transition-duration: 300ms;
   }
 
-  /* Reduce motion on mobile for better performance */
+  /* Disable ALL animations on mobile for stability */
+  .mobile-no-animations *,
+  .mobile-no-animations *::before,
+  .mobile-no-animations *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    will-change: auto !important;
+  }
+
   @media (max-width: 768px) {
-    * {
-      transition-duration: 200ms !important;
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      will-change: auto !important;
     }
     
-    /* Disable complex animations on mobile */
-    @media (prefers-reduced-motion: no-preference) {
-      .animate-gradient,
-      .gradient-text {
-        animation-duration: 4s;
-      }
+    /* Disable all framer-motion animations */
+    [data-framer-component],
+    [data-framer-name],
+    [style*="transform"],
+    [style*="opacity"] {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      will-change: auto !important;
     }
     
-    /* Force GPU acceleration for common animated elements */
-    section,
-    div[class*="motion"],
-    [data-framer-component] {
-      transform: translate3d(0, 0, 0);
-      -webkit-transform: translate3d(0, 0, 0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-    
-    /* Simplify gradients on mobile */
+    /* Disable gradient animations */
+    .animate-gradient,
     .gradient-text {
-      animation: none;
-      background-size: 100% 100%;
+      animation: none !important;
+      background-size: 100% 100% !important;
+    }
+    
+    /* Disable hover effects */
+    .card-elevated:hover,
+    .glass-card:hover,
+    .hover-lift:hover,
+    .group:hover {
+      transform: none !important;
+      box-shadow: inherit !important;
+      scale: 1 !important;
+    }
+    
+    /* Force static layout */
+    section,
+    div,
+    [class*="motion"],
+    img,
+    video {
+      transform: none !important;
+      will-change: auto !important;
+      animation: none !important;
+      transition: none !important;
+    }
+    
+    /* Disable all CSS transforms */
+    [style*="translate"],
+    [style*="scale"],
+    [style*="rotate"] {
+      transform: none !important;
+    }
+    
+    /* Prevent any layout shifts */
+    * {
+      backface-visibility: visible !important;
+      perspective: none !important;
     }
   }
 

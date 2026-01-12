@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Quote, Star, Play, Youtube } from "lucide-react";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const testimonials = [
   {
@@ -53,6 +54,7 @@ const videoTestimonials = [
 
 const Testimonials = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const openVideo = (videoId: string) => {
     setSelectedVideo(videoId);
@@ -69,12 +71,7 @@ const Testimonials = () => {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/4 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="professional-badge mb-4">
             Guest Testimonials
           </span>
@@ -84,49 +81,24 @@ const Testimonials = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Hear from educators, exhibitors, and industry leaders who have experienced ET TECH X
           </p>
-        </motion.div>
+        </div>
 
         {/* Video Testimonials Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
+        <div className="mb-20">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-8 text-center text-foreground">
             Video <span className="gradient-text">Testimonials</span>
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {videoTestimonials.map((video, index) => (
-              <motion.div
+              <div
                 key={video.id}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  delay: index * 0.15,
-                  duration: 0.6,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15
-                }}
-                whileHover={{ 
-                  y: -8,
-                  scale: 1.02,
-                  transition: { duration: 0.3 }
-                }}
                 className="group cursor-pointer"
                 onClick={() => openVideo(video.id)}
               >
-                <div className="relative overflow-hidden rounded-2xl bg-card border border-border shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:border-primary/30">
-                  {/* Animated Gradient Border Effect */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-xl" />
-                  </div>
-                  
+                <div className="relative overflow-hidden rounded-2xl bg-card border border-border shadow-lg">
                   {/* Thumbnail */}
                   <div className="relative aspect-video overflow-hidden rounded-t-2xl">
-                    <motion.img
+                    <img
                       src={video.thumbnail}
                       alt={video.title}
                       width={640}
@@ -137,104 +109,52 @@ const Testimonials = () => {
                         contentVisibility: "auto",
                         containIntrinsicSize: "640px 360px"
                       }}
-                      whileHover={{ scale: 1.15 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
                       onError={(e) => {
                         e.currentTarget.src = "https://via.placeholder.com/640x360/3b82f6/ffffff?text=ET+TECH+X+Testimonial";
                       }}
                     />
                     
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/40 group-hover:via-black/10 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     
                     {/* Play Button Overlay */}
-                    <motion.div 
-                      className="absolute inset-0 flex items-center justify-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <motion.div 
-                        className="w-20 h-20 rounded-full bg-primary/95 group-hover:bg-primary flex items-center justify-center shadow-2xl backdrop-blur-sm"
-                        whileHover={{ scale: 1.15, rotate: 360 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <motion.div
-                          whileHover={{ scale: 1.2 }}
-                          transition={{ type: "spring", stiffness: 400 }}
-                        >
-                          <Play className="w-10 h-10 text-white ml-1" fill="white" />
-                        </motion.div>
-                      </motion.div>
-                    </motion.div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full bg-primary/95 flex items-center justify-center shadow-2xl backdrop-blur-sm">
+                        <Play className="w-10 h-10 text-white ml-1" fill="white" />
+                      </div>
+                    </div>
                     
                     {/* YouTube Badge */}
-                    <motion.div 
-                      className="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 shadow-lg"
-                      whileHover={{ scale: 1.1, x: -5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
+                    <div className="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 shadow-lg">
                       <Youtube className="w-4 h-4" />
                       <span>YouTube</span>
-                    </motion.div>
-                    
-                    {/* Shimmer Effect on Hover */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full"
-                      transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-                    />
+                    </div>
                   </div>
 
                   {/* Video Info */}
-                  <motion.div 
-                    className="p-6 relative z-10"
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="font-display font-semibold text-lg mb-2 group-hover:text-primary transition-colors duration-300 text-foreground">
+                  <div className="p-6 relative z-10">
+                    <h3 className="font-display font-semibold text-lg mb-2 text-foreground">
                       {video.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2 group-hover:text-foreground/80 transition-colors duration-300">
+                    <p className="text-sm text-muted-foreground line-clamp-2">
                       {video.description}
                     </p>
-                    
-                    {/* Animated Arrow on Hover */}
-                    <motion.div
-                      className="mt-3 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={{ x: -10 }}
-                      whileHover={{ x: 0 }}
-                    >
-                      <span className="text-xs font-semibold">Watch Testimonial</span>
-                      <motion.div
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <Play className="w-3 h-3" fill="currentColor" />
-                      </motion.div>
-                    </motion.div>
-                  </motion.div>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Written Testimonials Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <div>
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-8 text-center text-foreground">
             Written <span className="gradient-text">Testimonials</span>
           </h3>
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <motion.div
+              <div
                 key={testimonial.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
                 className="card-elevated p-8 relative"
               >
                 {/* Quote Icon */}
@@ -279,43 +199,29 @@ const Testimonials = () => {
                     <p className="text-xs text-primary font-medium">{testimonial.organization}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Video Modal */}
         {selectedVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={closeVideo}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0, y: 50 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 50 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            <div
               className="relative w-full max-w-5xl aspect-video"
               onClick={(e) => e.stopPropagation()}
             >
-              <motion.button
+              <button
                 onClick={closeVideo}
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                className="absolute -top-12 right-0 text-white hover:text-primary transition-colors text-lg font-semibold flex items-center gap-2 bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm"
+                className="absolute -top-12 right-0 text-white text-lg font-semibold flex items-center gap-2 bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm"
               >
                 <span>✕</span>
                 <span>Close</span>
-              </motion.button>
-              <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.1 }}
-                className="w-full h-full rounded-xl overflow-hidden shadow-2xl"
-              >
+              </button>
+              <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl">
                 <iframe
                   src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&rel=0`}
                   title="YouTube video player"
@@ -323,9 +229,9 @@ const Testimonials = () => {
                   allowFullScreen
                   className="w-full h-full"
                 />
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </section>

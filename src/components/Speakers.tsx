@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Linkedin, Twitter } from "lucide-react";
 import Section3D from "./3d/Section3D";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const speakers = [
   {
@@ -30,19 +31,16 @@ const speakers = [
 ];
 
 const Speakers = () => {
+  const isMobile = useIsMobile();
+  
   return (
     <section id="speakers" className="py-32 relative overflow-hidden bg-section-gradient section-divider">
       {/* Decorative */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <Section3D sectionId="speakers" color="#3b82f6" />
+      {!isMobile && <Section3D sectionId="speakers" color="#3b82f6" />}
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="professional-badge mb-4">
             Featured Speakers
           </span>
@@ -52,18 +50,13 @@ const Speakers = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Industry leaders and innovators sharing their vision for the future of education
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {speakers.map((speaker, index) => (
-            <motion.div
+            <div
               key={speaker.name}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-              whileHover={{ scale: 1.05, y: -8 }}
-              className="card-elevated overflow-hidden group smooth-transition border-2 border-transparent hover:border-primary/30"
+              className="card-elevated overflow-hidden group border-2 border-transparent"
               style={{
                 background: index % 4 === 0 
                   ? 'linear-gradient(135deg, hsl(0 0% 100%), hsl(221 83% 53% / 0.05))'
@@ -81,7 +74,7 @@ const Speakers = () => {
                   width={400}
                   height={400}
                   loading="lazy"
-                  className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full aspect-square object-cover"
                   style={{ 
                     contentVisibility: "auto",
                     containIntrinsicSize: "400px 400px"
@@ -90,21 +83,9 @@ const Speakers = () => {
                     e.currentTarget.src = "https://via.placeholder.com/400x400/3b82f6/ffffff?text=Speaker";
                   }}
                 />
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{
-                    background: index % 4 === 0 
-                      ? 'linear-gradient(to top, hsl(221 83% 53% / 0.9), hsl(262 83% 58% / 0.7), transparent)'
-                      : index % 4 === 1
-                      ? 'linear-gradient(to top, hsl(262 83% 58% / 0.9), hsl(330 81% 60% / 0.7), transparent)'
-                      : index % 4 === 2
-                      ? 'linear-gradient(to top, hsl(330 81% 60% / 0.9), hsl(16 85% 57% / 0.7), transparent)'
-                      : 'linear-gradient(to top, hsl(16 85% 57% / 0.9), hsl(173 80% 40% / 0.7), transparent)'
-                  }}
-                />
-                
-                {/* Social Links */}
-                <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0">
+                {/* Social Links - Hidden on mobile */}
+                {!isMobile && (
+                  <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100">
                   <a
                     href="#"
                     className="w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg"
@@ -124,6 +105,7 @@ const Speakers = () => {
                     <Twitter className="w-5 h-5 text-white" />
                   </a>
                 </div>
+                )}
               </div>
 
               <div className="p-5">
@@ -133,16 +115,11 @@ const Speakers = () => {
                 <p className="text-sm text-primary mb-2 font-medium">{speaker.role}</p>
                 <p className="text-sm text-muted-foreground">{speaker.topic}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
+        <div className="text-center mt-12">
           <a
             href="#"
             className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
@@ -150,7 +127,7 @@ const Speakers = () => {
             View All Speakers
             <span className="text-lg">→</span>
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

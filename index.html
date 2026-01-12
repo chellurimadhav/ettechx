@@ -23,6 +23,15 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // Disable animations on mobile immediately
+      if (window.innerWidth <= 768) {
+        document.documentElement.style.setProperty('--animation-duration', '0ms');
+        document.documentElement.style.setProperty('--transition-duration', '0ms');
+        // Add class to body for CSS targeting
+        document.documentElement.classList.add('mobile-no-animations');
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -41,42 +41,23 @@ const Index = () => {
   return (
     <>
       <PageLoader />
-      <motion.div 
-        className="min-h-screen bg-background relative"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: isMobile ? 0.3 : 0.8, ease: [0.4, 0, 0.2, 1] }}
-      >
+      <div className="min-h-screen bg-background relative">
         {/* Global scroll-based 3D background with parallax - Only on desktop */}
         {!isMobile && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1], delay: 0.5 }}
-          >
+          <div>
             <ScrollParallax />
             <Scroll3D />
-          </motion.div>
+          </div>
         )}
         
         <div className="relative z-10" style={{ contain: "layout style" }}>
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: isMobile ? 0.3 : 0.8, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0.1 : 0.6 }}
-            style={{ contain: "layout style", willChange: "transform, opacity" }}
-          >
+          <div>
             <Navbar />
-          </motion.div>
+          </div>
           
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: isMobile ? 0.3 : 1, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0.15 : 0.7 }}
-            style={{ contain: "layout style", willChange: "opacity" }}
-          >
+          <div>
             <Hero />
-          </motion.div>
+          </div>
         
           <ScrollReveal direction="up" delay={0.2} duration={0.8}>
             <HeroSlider />
@@ -141,7 +122,7 @@ const Index = () => {
           isOpen={isRegistrationOpen}
           onClose={() => setIsRegistrationOpen(false)}
         />
-      </motion.div>
+      </div>
     </>
   );
 };

@@ -6,12 +6,121 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const Hero = () => {
   const isMobile = useIsMobile();
+  // On mobile, use regular div without animations
+  if (isMobile) {
+    return (
+      <section className="relative min-h-[95vh] sm:min-h-[90vh] md:min-h-[95vh] flex items-center overflow-hidden bg-hero-gradient">
+        {/* Content without animations on mobile */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Minimal static decorative elements only */}
+        </div>
+        {/* Rest of content */}
+        <div className="container mx-auto px-4 sm:px-6 relative z-[10]" style={{ contain: "layout style" }}>
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
+            <div className="max-w-2xl relative z-[20]" style={{ contain: "layout" }}>
+              {/* Badge */}
+              <div className="professional-badge mb-6 sm:mb-8">
+                <span className="w-2 h-2 bg-accent rounded-full" />
+                <span className="text-sm font-semibold">
+                  India's Premier Education & Technology Summit
+                </span>
+              </div>
+
+              {/* Main Heading */}
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-[1.1] mb-6 sm:mb-8 text-foreground">
+                <span>ET TECH</span>
+                <span className="gradient-text">{" "}X</span>
+                <br />
+                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-muted-foreground mt-2 block">
+                  Where Business Meets Innovation
+                </span>
+              </h1>
+
+              {/* Description */}
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mb-6 sm:mb-8 md:mb-10 leading-relaxed px-2 sm:px-0">
+                ET TECH X encourages innovations by connecting StartUps, Educational and Technology Leaders, major corporations and Investors responding to our World's Biggest Challenges.
+              </p>
+
+              {/* Event Info Cards */}
+              <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-10 px-2 sm:px-0">
+                {/* Cards without animations */}
+                <div className="card-elevated flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-3 sm:py-4 border-2 border-transparent" style={{ background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(221 83% 53% / 0.05))' }}>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0" style={{ background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%))' }}>
+                    <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5 sm:mb-1">Date</p>
+                    <p className="font-bold text-foreground text-sm sm:text-base">11-12-13 Dec 2025</p>
+                  </div>
+                </div>
+                <div className="card-elevated flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-3 sm:py-4 border-2 border-transparent" style={{ background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(173 80% 40% / 0.05))' }}>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0" style={{ background: 'linear-gradient(135deg, hsl(173 80% 40%), hsl(16 85% 57%))' }}>
+                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5 sm:mb-1">Venue</p>
+                    <p className="font-bold text-foreground text-sm sm:text-base">HITEX, Hyderabad</p>
+                  </div>
+                </div>
+                <div className="card-elevated flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-3 sm:py-4 border-2 border-transparent" style={{ background: 'linear-gradient(135deg, hsl(0 0% 100%), hsl(16 85% 57% / 0.05))' }}>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0" style={{ background: 'linear-gradient(135deg, hsl(16 85% 57%), hsl(330 81% 60%))' }}>
+                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-0.5 sm:mb-1">Expected</p>
+                    <p className="font-bold text-foreground text-sm sm:text-base">8,000+ Attendees</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-3 sm:gap-4 px-2 sm:px-0">
+                <Button 
+                  size="xl" 
+                  onClick={() => {
+                    const event = new CustomEvent('openRegistration');
+                    window.dispatchEvent(event);
+                  }}
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(221 83% 53%), hsl(262 83% 58%), hsl(330 81% 60%), hsl(16 85% 57%))',
+                    backgroundSize: '200% 200%'
+                  }}
+                  className="text-white shadow-lg font-semibold text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
+                >
+                  I want to attend
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline-block" />
+                </Button>
+                <Button variant="outline" size="xl" className="border-2 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Watch Highlights
+                </Button>
+              </div>
+            </div>
+
+            {/* Countdown Timer - Hidden on mobile in this version */}
+            <div className="hidden lg:flex justify-center items-center relative">
+              <div className="relative w-full max-w-2xl">
+                <CountdownTimer targetDate="2025-12-11T09:00:00" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Countdown */}
+        <div className="lg:hidden absolute bottom-8 left-4 right-4 z-20">
+          <CountdownTimer targetDate="2025-12-11T09:00:00" />
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop version with animations
   return (
     <motion.section 
       className="relative min-h-[95vh] sm:min-h-[90vh] md:min-h-[95vh] flex items-center overflow-hidden bg-hero-gradient"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: isMobile ? 0.3 : 1, ease: [0.4, 0, 0.2, 1], delay: isMobile ? 0.1 : 0.8 }}
+      transition={{ duration: 1, ease: [0.4, 0, 0.2, 1], delay: 0.8 }}
       style={{ willChange: "opacity", transform: "translateZ(0)" }}
     >
       {/* Decorative Elements */}

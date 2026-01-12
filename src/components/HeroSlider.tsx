@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const slides = [
   {
@@ -19,6 +20,7 @@ const slides = [
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -38,26 +40,36 @@ const HeroSlider = () => {
   const goToNext = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
-
+  
   return (
     <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden" style={{ contain: "layout style paint" }}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10"
-          style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-        >
+      {isMobile ? (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
           <div className="container mx-auto px-4 text-center">
             <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold text-foreground">
               {slides[currentSlide].title}
             </h2>
           </div>
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      ) : (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10"
+            style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
+          >
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold text-foreground">
+                {slides[currentSlide].title}
+              </h2>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      )}
 
       {/* Navigation Arrows */}
       <button
